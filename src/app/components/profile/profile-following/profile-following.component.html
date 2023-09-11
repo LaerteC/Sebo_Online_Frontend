@@ -1,0 +1,29 @@
+<h4 class="px-4 flex items-center justify-between">
+    <span class="flex items-center">
+        <mat-icon>group</mat-icon>
+        <span class="ml-2 text-base font-semibold">
+            Seguindo
+        </span>
+    </span>
+    <span>
+        <a class="text-blue-600 underline"
+            *ngIf="followersIds.length != 0"
+            [routerLink]="'/followings'" 
+            queryParamsHandling="preserve"
+        >
+            All {{ followersIds.length }}  Seguidores
+        </a>
+    </span>
+    
+</h4>
+
+<ul class="grid grid-cols-3 grid-rows-1 gap-x-1.5 gap-y-1 px-1">
+    <li
+        *ngFor="let profile of profiles"
+        class="max-h-20"
+    >
+        <a class="relative" [routerLink]="'/profile'" [queryParams]="{id: profile.id}">
+            <img class="relative w-full h-full object-cover" [src]="profile.owner.avatarImageUrl != 'https://www.nicepng.com/png/full/128-1280406_view-user-icon-png-user-circle-icon-png.png' ? profile.owner.avatarImageUrl : 'assets/images/search-no-image.svg'" >
+        </a>
+    </li>
+</ul>

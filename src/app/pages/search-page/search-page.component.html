@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+
+<div class="mt-8 mx-5 lg:mx-7 xl:mx-20">
+    
+    <div class="grid grid-cols-4 gap-x-3">
+
+        <div class="col-span-3">
+
+            <!-- Search form-->
+            <form class="form relative bg-[url('assets/images/search-background.png')] bg-no-repeat bg-cover tracking-wider" [formGroup]="form">
+                <h1 class="pt-4 font-bold text-center text-white text-shadow"
+                    [ngStyle]="{'padding-top': '20px'}"
+                >Search on Social Sources</h1>
+                <mat-form-field class="relative full-width px-4 py-2 bg-fixed box-shadow grid grid-cols-5" appearance="outline">
+                    <mat-label class="w-4/5 tracking-wider">Search friends...</mat-label>
+                    <input matInput class="bg-white col-span-3" formControlName="userName">
+
+                    <button class="absolute z-20 -top-[8.5px] -right-3 grid grid-flow-col auto-cols-max align-middle items-center content-center h-[52px] bg-blue-600
+                                    text-white font-semibold tracking-wider px-4 hover:bg-blue-700 transition-all" 
+                            id="search-button"
+                            (click)="onSubmit()"
+                            (change)="onChange()"
+                    >
+                        <mat-icon>search</mat-icon>
+                        <p class="tracking-wider" [ngStyle]="{'margin': '0'}">Pesquisar </p>
+                    </button>
+                    <mat-error class="text-lighter">Wrong format. You have to specify first than last names. Example: "John Doe"</mat-error>
+                </mat-form-field>
+            </form>
+
+
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-4">
+                <app-search-user-card 
+                    *ngFor="let profile of profiles"
+                    [profile]="profile"
+                    [subscribedIds]="subscribedIds == null ? [] : subscribedIds"
+                    [ownId]="ownId"
+                ></app-search-user-card>
+            </div>
+        </div>
+    </div>
+</div>

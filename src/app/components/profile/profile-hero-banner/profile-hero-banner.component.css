@@ -1,0 +1,47 @@
+#profile {
+    display: grid;
+    grid-template-columns: max-content 1fr 1fr;
+    grid-template-rows: 1fr max-content max-content;
+}
+
+#background {
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: cover;
+    grid-column: 1 / 4;
+    grid-row: 1 / 3;
+}
+
+#user_photo {
+    position: relative;
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+}
+
+#profile_nav {
+    grid-column: 1 / 4;
+    grid-row: 3 / 4;
+}
+
+[type="file"] {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 1px;
+}
+
+#addTransitionalAppearance {
+    animation-name: transitionalAppearance;
+    animation-duration: 0.3s;
+}
+
+@keyframes transitionalAppearance {
+    0%   { opacity: 0; }
+    25%  { opacity: .2;}
+    50%  { opacity: .6;}
+    100% { opacity: 1}
+}

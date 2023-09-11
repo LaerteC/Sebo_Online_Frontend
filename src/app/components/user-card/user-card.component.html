@@ -1,0 +1,17 @@
+<mat-card appearance="outlined" class="user-card">
+
+    <img class="bg-white w-[140px] h-[140px] border-[5px] rounded-full border-white object-cover" 
+        id="avatar" 
+        [src]="user.avatarImageUrl" alt=""       
+    />
+
+
+    <p style="padding-top: 1em; font-weight: bold;">
+        {{user.firstName}} {{user.lastName}}
+    </p>
+    
+    <p id="overflow-fix">
+        {{user.email}}
+    </p>
+    
+</mat-card>

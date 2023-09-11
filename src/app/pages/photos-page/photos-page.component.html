@@ -1,0 +1,44 @@
+<span class="fixed w-screen z-30">
+    <app-navbar></app-navbar>
+</span>
+
+<div class="pt-20 mx-5 lg:mx-7 xl:mx-20"> 
+    <ul class="grid gap-4 justify-items-center" id="responsive-grid">
+        <!-- Header -->
+        <li class="px-8 py-5 rounded-md bg-gradient-to-r from-purple-600 to-blue-600 w-full text-white text-6xl font-oleoScript text-center"
+            id="full-size"
+        >
+           ~ Photos ~
+        </li>
+
+        <li *ngIf="isEditable">
+            <form>
+                <label for="file" class="">
+                    <div class="w-[368px] h-[207px]">
+                        <div class="cursor-pointer rounded-lg shadow-lg bg-white text-gray-400 h-full box-shadow flex justify-center items-center hover:bg-gray-300 hover:text-white transition-all">
+                            <p class="text-[200px] font-mono font-bold">+</p>
+                        </div>
+                    </div>
+                </label>
+                <input 
+                    name="background"
+                    type="file" 
+                    id="file" 
+                    accept="image/jpg, image/jpeg, image/png"
+                    (change)="onImageChange($event)" 
+                />
+            </form>
+        </li>
+
+        <li
+            class="w-[368px] h-[207px] relative"
+            *ngFor="let photo of photoUrls"
+        >
+            <app-photos-page-images 
+                [photo]="photo" 
+                [isEditable]="isEditable"
+                (removedElement)="onDeletePhoto($event)"
+            ></app-photos-page-images>
+        </li>
+    </ul>
+</div>

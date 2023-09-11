@@ -1,0 +1,93 @@
+<span class="fixed w-screen z-30">
+    <app-navbar></app-navbar>
+</span>
+
+<div class="pt-20 mx-5 lg:mx-7 xl:mx-20">
+
+    <app-profile-hero-banner 
+        [isEditable]="isEditable" 
+        [heroBannerInformation]="profileHeroBanner"
+        [updateProfile]="updateProfile"
+    ></app-profile-hero-banner>
+
+    <div class="mt-4 grid grid-cols-[270px_1fr_1fr] lg:grid-cols-[360px_1fr_1fr] xl:grid-cols-4 gap-4">
+
+        <aside>
+            <!-- Personal Information | Container -->
+            <div class="bg-white box-shadow p-4"
+                *ngIf="!isProfileToDisplay || isEditable"
+            >
+                <app-profile-personal-information [profilePersonalInfo]="profilePersonalInfo">
+                    <button
+                        *ngIf="isEditable" 
+                        class="w-full mt-2" 
+                        mat-raised-button color="primary"
+                        (click)="openDialog()"
+                    >+ Add Information</button>
+                </app-profile-personal-information>
+            </div>
+
+            <!-- List of Friends-->
+            <div class="py-4 bg-white box-shadow"
+                *ngIf="followersIds.length != 0"
+                [ngClass]="{
+                    'mt-4' : !isProfileToDisplay || isEditable
+                }"
+            >
+                <app-profile-following [followersIds]="followersIds"></app-profile-following>
+            </div>
+
+            <div class="mt-4 p-4 bg-white box-shadow">
+                <h4 class="flex items-center justify-between">
+                    <span class="flex items-center">
+                        <mat-icon>photo</mat-icon>
+                        <span class="ml-2 text-base font-semibold">
+                            Photos
+                        </span>
+                    </span>
+                    <a 
+                        *ngIf="photoUrls.length != 0"
+                        [routerLink]="'/photos'" [queryParams]="{id: profileId}"
+                        class="text-blue-600 underline"
+                    >All</a>
+                </h4>
+
+                <button
+                        *ngIf="isEditable && photoUrls.length == 0" 
+                        class="w-full mt-2"
+                        mat-raised-button color="primary"
+                        routerLink="/photos"
+                >+ Add Photos</button>
+                <ul class="grid grid-cols-3 grid-rows-1 gap-x-1.5 gap-y-1 px-1">
+                    <li
+                        *ngFor="let photoUrl of photoUrls"
+                    ><img class="relative w-full h-full object-cover" [src]="photoUrl" ></li>
+                </ul>
+            </div>
+
+        </aside>
+        
+
+        <div class="col-span-2">
+            <div class="bg-white px-4 py-2 mb-4 box-shadow"
+                *ngIf="isEditable"
+            >
+              <app-post-create [inputPosts]="inputPosts" (outputPosts)="updatePosts($event)"></app-post-create>
+            </div>
+            
+
+            <div *ngFor="let post of posts">
+                <app-post [post]="post" (postToRemove)="onPostRemove($event)"></app-post>
+            </div>
+           
+        </div>
+        
+    </div>
+    
+
+    <!--  -->
+</div>
+
+
+
+

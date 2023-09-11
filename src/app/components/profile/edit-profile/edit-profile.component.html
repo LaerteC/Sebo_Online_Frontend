@@ -1,0 +1,46 @@
+<div class="mat-typography rounded-lg bg-slate-200 p-2 grid grid-flow-col grid-cols-[1fr_3fr] gap-x-2 max-w-[80wv] overflow-visible overflow-y-auto">
+    <app-edit-profile-sidebar (click)="onClick($event)"></app-edit-profile-sidebar>
+
+    <div class="px-4 py-4 bg-white box-shadow min-w-0" id="overflow-fix"
+        [ngSwitch]="showComponent | async"
+    >
+        <span *ngSwitchCase="'general information'">
+            <h2> Informações Gerais</h2>
+            <mat-divider></mat-divider>
+            <app-edit-profile-general-info (outputProfile)="emitProfile($event)"></app-edit-profile-general-info>
+        </span>
+
+        <span *ngSwitchCase="'location'">
+            <h2> Localização </h2>
+            <mat-divider></mat-divider>
+            <app-edit-profile-location (outputProfile)="emitProfile($event)"></app-edit-profile-location>
+        </span>
+
+        <span *ngSwitchCase="'education'">
+            <h2> Educação </h2>
+            <mat-divider></mat-divider>
+            <app-edit-profile-education (outputProfile)="emitProfile($event)"></app-edit-profile-education>
+        </span>
+
+        <span *ngSwitchCase="'work'">
+            <h2> Profissão </h2>
+            <mat-divider></mat-divider>
+            <app-edit-profile-work (outputProfile)="emitProfile($event)"></app-edit-profile-work>
+        </span>
+
+        <span *ngSwitchCase="'marital status'">
+            <h2> Estado Civil</h2>
+            <mat-divider></mat-divider>
+            <app-edit-profile-marital-status (outputProfile)="emitProfile($event)"></app-edit-profile-marital-status>
+        </span>
+
+        <span *ngSwitchCase="'security settings'">
+            <h2> Configurações de segurança</h2>
+            <mat-divider></mat-divider>
+            <app-edit-profile-security-settings></app-edit-profile-security-settings>
+        </span>   
+
+        
+       
+    </div>
+</div>

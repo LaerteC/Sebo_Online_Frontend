@@ -1,0 +1,69 @@
+<span class="fixed w-screen z-30">
+    <app-navbar></app-navbar>
+</span>
+
+    <div class="mx-5 lg:mx-7 xl:mx-20">
+        <div class="sidebyside mt-20">
+            <app-user-card></app-user-card>
+        </div>
+
+        <div class="w-2/3 mt-20 sidebyside post-feed-container flex justify-center ">
+            <form class=" form mt-20 bg-white px-4 py-2 box-shadow " *ngIf="!createPost; else createPostTemplate" style="border-style: hidden;">
+                <mat-form-field class="full-width" appearance="outline" color="primary" >
+                    <mat-label> Quero trocar ou  doar livros ?</mat-label>
+                    <input matInput (focus)="toggleCreatePost()">
+                </mat-form-field>
+            </form>
+
+
+            <ng-template #createPostTemplate >
+                <form class="form mt-20 bg-white px-4 py-2 " [formGroup]="postForm" (ngSubmit)="submitPost($event)" >
+                    <mat-form-field appearance="outline" class="full-width" color="primary">
+                        <mat-label> Postar um livro </mat-label>
+                        <textarea class="min-h-[120px]" id="no-resize" matInput autofocus formControlName="text" ></textarea>
+                    </mat-form-field>
+
+                    <div *ngIf="this.profanity" (click)="toggleProfanity()" class="text-red-600">
+                        No profanity!
+                    </div>
+
+                    <div class="flex justify-end w-full">
+                        <button mat-raised-button color="warn" (click)="toggleCreatePost()">Cancel</button>
+                        <button class="mx-5" mat-raised-button color="primary" (click)="submitPost($event)">Post</button>
+                    </div>
+
+                </form>
+
+                <div
+                        class="absolute top-6 left-16"
+                        *ngIf="isEditable"
+                ></div>
+
+                <img class="relative bg-white w-[120px] h-[120px] border-[5px] rounded-full border-white ml-5 mr-3 mt-3 object-cover"
+                     id="livro"
+                     [src]="heroBannerInformation.avatarImageUrl" alt="user's photo"
+                     (mouseenter)="isAvatarUploadShown = true"
+                />
+
+                <form>
+                    <label for="file"
+                           class="text-white/40 text-shadow hover:text-white/90 transition-colors cursor-pointer">
+                        <mat-icon class="scale-125">photo_camera</mat-icon>
+                    </label>
+                    <input
+                            name="livro"
+                            type="file"
+                            id="file"
+                            accept="image/jpg, image/jpeg, image/png"
+                            (change)="onImageChange($event, 'background')"
+                    />
+                </form>
+                    </ng-template>
+
+            <div class="" *ngFor="let post of posts">
+                <app-post [post]="post" (postToRemove)="onPostRemove($event)"></app-post>
+            </div>
+        </div>
+    </div>
+
+

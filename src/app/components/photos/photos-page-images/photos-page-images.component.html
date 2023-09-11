@@ -1,0 +1,11 @@
+<span (mouseenter)="showDelete = true" (mouseleave)="showDelete = false">
+    <img class="w-[368px] h-[207px]" [src]="photo" id="fit"/>
+
+    <div 
+        class="absolute top-2 right-2 text-white text-sm font-bold rounded-full bg-red-500 w-5 h-5 flex justify-center items-center cursor-pointer"
+        *ngIf="isEditable && showDelete"
+        (click)="onPhotoDelete()"
+    >
+        &#10006;
+    </div>
+</span>

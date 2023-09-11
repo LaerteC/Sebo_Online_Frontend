@@ -1,0 +1,29 @@
+<div class="px-2 pt-2">
+    <form *ngIf="!createPost; else createPostTemplate">
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Something on your mind?</mat-label>
+            <input matInput (focus)="toggleCreatePost()">
+        </mat-form-field>
+    </form>
+
+    <ng-template #createPostTemplate>
+        <form [formGroup]="postForm" (ngSubmit)="submitPost($event)">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Make a Post</mat-label>
+                <textarea class="min-h-[120px]" id="no-resize" matInput autofocus formControlName="text"></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Adicionar um livro (Imagem)?</mat-label>
+                <input matInput formControlName="imageUrl">
+            </mat-form-field>
+            <div *ngIf="profanity" (click)="toggleProfanity()" class="text-red-600">
+                No profanity!
+            </div>
+            <div align="end">
+                <button mat-raised-button color="warn" (click)="toggleCreatePost()">Cancel</button>
+                <button mat-raised-button color="primary" (click)="submitPost($event)">Post</button>
+            </div>
+
+        </form>
+    </ng-template>
+</div>
