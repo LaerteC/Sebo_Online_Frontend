@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
-import { EditProfileComponent } from 'src/app/components/profile/edit-profile/edit-profile.component';
+import { EditProfileComponent } from 'src/app/components/profileUser/edit-profile/edit-profile.component';
 import Post from 'src/app/models/Post';
 import { IProfile } from 'src/app/models/Profile';
 import { IProfileHeroBanner, ProfileHeroBanner } from 'src/app/models/ProfileHeroBanner';

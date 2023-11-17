@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 export class SocketService {
 
   constructor() { }
-
   getSocket = () => {
     const socket = new SockJS(environment.baseUrl + '/ws');
     return Stomp.over(socket);

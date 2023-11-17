@@ -1,0 +1,37 @@
+<h4 class="flex items-center">
+    <mat-icon>info</mat-icon>
+    <span class="ml-2 text-base font-semibold"> Informação pessoal
+ </span>
+</h4>
+
+<ul class="text-gray-700 pl-2">
+    <li class="flex items-center mb-1"
+        *ngIf="profilePersonalInfo.schoolName"
+    >
+        <mat-icon class="scale-75">local_library</mat-icon>
+        <span> Estudou  <b>{{ profilePersonalInfo.schoolName }}</b></span>
+    </li>
+
+    <li
+        class="flex items-center mb-1"
+        *ngIf="profilePersonalInfo.bornCity || profilePersonalInfo.bornCountry"
+    >
+        <mat-icon class="scale-75">location_on</mat-icon>
+        <span> De :
+            <b>
+                {{ profilePersonalInfo.bornCity }}{{ profilePersonalInfo.bornCity && profilePersonalInfo.bornCountry ? ', ' : '' }}
+                {{ profilePersonalInfo.bornCountry }}
+            </b>
+        </span>
+    </li>
+
+    <li
+        class="flex items-center mb-1"
+        *ngIf="profilePersonalInfo.maritalStatus"
+    >
+        <mat-icon class="scale-75">favorite</mat-icon>
+        <span> Estado civil : <b>{{ profilePersonalInfo.maritalStatus }}</b></span>
+    </li>
+
+    <ng-content></ng-content>
+</ul>

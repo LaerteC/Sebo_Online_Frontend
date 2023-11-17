@@ -1,27 +1,39 @@
-<p>
-    {{inputComment.text}}
-</p>
+<div class="comment-card">
+  <div class="comment-avatar">
+    <img src="{{ inputComment.author.avatarImageUrl }}" alt="Foto do Usuário" />
+  </div>
+  <div class="comment-content">
+    <h3>{{ inputComment.author.firstName }}</h3>
+    <p>{{ inputComment.text }}</p>
+  </div>
+</div>
+
 <div class="comment-reply" align="right">
 
-    <div class="comment-reply-text" (click)="toggleReplyToComment()">
-        reply
-    </div>
+
+
+
+        <div  style="padding:10px;" class="comment-reply-text" (click)="toggleReplyToComment()">
+            <mat-icon >chat</mat-icon>
+        </div>
+
+
 
     <form class="form" *ngIf="replyToComment" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
         <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Make a Post</mat-label>
+            <mat-label> Resposta </mat-label>
             <textarea matInput autofocus formControlName="text"></textarea>
         </mat-form-field>
         <div align="end">
-            <button mat-raised-button color="warn" (click)="toggleReplyToComment()">Cancel</button>
-            <button mat-raised-button color="primary" type="submit">Post</button>
+            <button mat-raised-button class="custom-cancel-button" (click)="toggleReplyToComment()">Cancelar</button>
+            <button mat-raised-button class="custom-submit-button" type="submit">Enviar</button>
         </div>
+
     </form>
-    
 </div>
 
 
-<div *ngFor="let comment of inputComment.comments" class="comment-container">
+<div *ngFor="let comment of inputComment.comentario" class="comment-container">
     <mat-divider></mat-divider>
     <app-comment [comment]="comment"></app-comment>
 </div>

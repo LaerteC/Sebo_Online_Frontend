@@ -1,0 +1,70 @@
+<div class="login-wrapper " fxLayout="row" fxLayoutAlign="center center">
+  <div class="background-image">
+  <mat-card appearance="outlined" class="box">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="flex justify-evenly mb-5">
+          <a
+            class="font-normal text-gray-400 text-[20px]"
+            [routerLink]="['/login']"
+          >Log in</a>
+          <a
+            [routerLink]="['/register']"
+            class="text-blue-600 font-semibold text-[20px] underline underline-offset-8"
+          > Cadastrar </a>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+
+    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit($event)">
+      <mat-card-content [ngStyle]="{'padding': '0'}">
+
+        <mat-form-field class="full-width">
+          <mat-label class="text-sm">E-mail</mat-label>
+          <input matInput  formControlName="email">
+          <mat-error *ngIf="this.registerForm.controls.email.hasError('email') ||
+                            this.registerForm.controls.email.hasError('required')"
+          >{{ this.registerForm.controls.email.hasError('email') ? " Formato de e-mail incorreto " : " O e-mail é obrigatório "}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="full-width">
+          <mat-label class="text-sm"> Senha</mat-label>
+          <input matInput placeholder="" type="password" formControlName="password">
+          <mat-error
+            *ngIf="this.registerForm.controls.password.hasError('required') ||
+                   this.registerForm.controls.password.hasError('minlength')"
+          >{{ this.registerForm.controls.password.hasError('required') ? " Senha obrigatória" :  " A senha deve ter pelo menos 6 caracteres "}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="full-width">
+          <mat-label class="text-sm"> Nome</mat-label>
+          <input matInput placeholder="" formControlName="firstName">
+          <mat-error
+            *ngIf="this.registerForm.controls.firstName.hasError('required')"
+          > Nome é Obrigatório</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="full-width">
+          <mat-label class="text-sm"> Sobrenome</mat-label>
+          <input matInput placeholder="" formControlName="lastName">
+          <mat-error
+            *ngIf="this.registerForm.controls.lastName.hasError('required')"
+          > Sobrenome é Obrigatório</mat-error>
+        </mat-form-field>
+
+
+      </mat-card-content>
+      <button mat-raised-button color="primary" class="btn-block tracking-wider" type="submit"> Cadastrar </button>
+    </form>
+    <p
+      *ngIf="hasError"
+      class="text-red-500 text-center my-4"
+    >
+      {{ message }}
+    </p>
+  </mat-card>
+    </div>
+</div>

@@ -30,7 +30,7 @@ export class CommentComponent implements OnInit {
   submitReply = (e: any) => {
     e.preventDefault()
     let newComment = new Post(0, this.commentForm.value.text || "", "", 0, this.authService.currentUser, [])
-    this.postService.upsertComment({...this.inputComment, comments: [...this.inputComment.comments, newComment]})
+    this.postService.upsertComment({...this.inputComment, comentario: [newComment ,...this.inputComment.comentario ]})
       .subscribe(
         (response) => {
           this.inputComment = response
@@ -38,4 +38,5 @@ export class CommentComponent implements OnInit {
         }
       )
   }
+
 }

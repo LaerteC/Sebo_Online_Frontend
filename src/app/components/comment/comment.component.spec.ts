@@ -13,7 +13,7 @@ describe('CommentComponent', () => {
   let authServiceStub: Partial<AuthService>;
   let postServiceStub: Partial<PostService>;
   let user = new User(0,"","","");
-  let post = new Post(0,"","",0,user,[]);
+  let post = new Post(0, "", "", 0, user, []);
 
   postServiceStub = {
     upsertComment(post: Post): Observable<any>{

@@ -10,6 +10,16 @@ import {ImageService} from "../../services/image.service";
 import {ProfileService} from "../../services/profile.service";
 import {IProfile} from "../../models/Profile";
 import {IProfileHeroBanner} from "../../models/ProfileHeroBanner";
+import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
+import {ThemePalette} from "@angular/material/core";
+
+
+
+export interface ChipColor {
+  name: string;
+  color: ThemePalette;
+}
 
 @Component({
   selector: 'app-post-feed-page',
@@ -19,28 +29,32 @@ import {IProfileHeroBanner} from "../../models/ProfileHeroBanner";
 
 export class PostFeedPageComponent implements OnInit {
 
-  isAvatarUploadShown: boolean = false;
-  @Input()
-  updateProfile (profile: IProfile): void {};
 
-  @Input()
-  isEditable: boolean = false;
+  @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
 
-  @Input()
-  heroBannerInformation: IProfileHeroBanner;
+  //
+  // availableColors: ChipColor[] = [
+  //   {name: 'none', color: undefined},
+  //   {name: 'Primary', color: 'primary'},
+  //   {name: 'Accent', color: 'accent'},
+  //   {name: 'Warn', color: 'warn'},
+  // ];
 
-  postForm = new FormGroup({
-    text: new FormControl(''),
-    imageUrl: new FormControl('')
-  })
+  imageUrl: string;
+  generosLivros: string[] = ["Ficção Científica", "Fantasia", "Romance", "Mistério", "Suspense", "Não Ficção", "História", "Aventura"];
+
+
 
   posts: Post[] = [];
   createPost:boolean = false;
   profanity: boolean = false;
 
-  constructor(private postService: PostService, private authService: AuthService,private imageService: ImageService, private profileService: ProfileService) { }
+  constructor(private postService: PostService, private route: ActivatedRoute, private authService: AuthService,private imageService: ImageService, private profileService: ProfileService) { }
 
   ngOnInit(): void {
+
+    window.scrollTo(0, 0);
+
     this.postService.getAllSubscribedPosts().subscribe(
       (response) => {
         this.posts = response
@@ -48,87 +62,37 @@ export class PostFeedPageComponent implements OnInit {
     )
   }
 
+
   toggleCreatePost = () => {
     this.createPost = !this.createPost
   }
 
-  submitPost = (e: any) => {
-    e.preventDefault();
-    this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", 0, this.authService.currentUser, []))
-      .subscribe({
-        next: (response) => {
-          this.posts = [response, ...this.posts]
-          this.profanity = false;
-          this.toggleCreatePost()
-        }, 
-        error: error => {
-          if (error.error === "profanity") {
-            this.profanity = true;
-          }
-        },
-        complete: () => {
-          this.postForm.controls.imageUrl.setValue('')
-          this.postForm.controls.text.setValue('')
-          this.profanity = false;
-        }
-    })
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
-  toggleProfanity = () => {
-    console.log("profanity");
-    this.profanity = false;
+  onChipSelectionChange(event: any) {
+    if (event != null) {
+      this.postService.getPostByCategory(event).subscribe(
+        (response) => {
+          this.posts = response;
+          console.log('Chip selecionado Emanuel torce pro Coritiba:', event, 'VALOR DOS LIVROS:', this.posts);
+        }
+      );
+    } else {
+      console.log('Chip desselecionado:', event);
+    }
   }
+
+
 
   onPostRemove(e: any) {
     this.posts = this.posts.filter(post => post.id != e.id);
   }
 
 
-
-  onImageChange(e: any, elementToUpdate: string) {
-    const reader = new FileReader();
-
-    if (e.target.files && e.target.files.length) {
-      const [image]: File[] = e.target.files;
-
-      reader.readAsDataURL(image);
-
-      reader.onload = () => {
-        this.imageService.uploadImage(this.decompressImage(reader.result)).subscribe({
-          next: (response : any) => {
-            let url = `${environment.baseUrl}/image/${response.id}`;
-
-            if (elementToUpdate == 'livro') {
-              this.heroBannerInformation.avatarImageUrl = url;
-              this.profileService.updateProfileAvatar(url).subscribe();
-            }
-
-
-          },
-          error: errorResponse => {
-            console.log(" Erro ao salvar a imagem de perfillll " + reader);
-          }
-        })
-      }
-
-
-    }
-  }
-
-  private decompressImage(image: string | ArrayBuffer | null) {
-    let imageFormat: string [];
-    let formattedImage: IImage = { type: '', content: ''};
-
-    if (typeof(image) == 'string') {
-      imageFormat  = (image.split(';'));
-
-      imageFormat[0] = imageFormat[0].replace(/data:/g, '');
-      imageFormat[1] = imageFormat[1].replace(/base64,/g, '');
-
-      formattedImage = { type: imageFormat[0], content: imageFormat[1]};
-    }
-
-    return formattedImage;
-  }
 }
 

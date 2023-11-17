@@ -1,29 +1,71 @@
 <div class="px-2 pt-2">
-    <form *ngIf="!createPost; else createPostTemplate">
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Something on your mind?</mat-label>
-            <input matInput (focus)="toggleCreatePost()">
-        </mat-form-field>
+  <form *ngIf="!createPost; else criacaoPublicarTemplate">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label> Quero trocar ou doar livros ? </mat-label>
+      <input matInput (focus)="toggleCreatePost()">
+    </mat-form-field>
+  </form>
+
+  <ng-template #criacaoPublicarTemplate>
+    <form [formGroup]="postForm" (ngSubmit)="submitPost($event)" class="custom-form">
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Nome do Livro</mat-label>
+        <textarea id="no-resize" matInput autofocus formControlName="nomeLivro" required></textarea>
+        <mat-error *ngIf="formControls.nomeLivro.hasError('required') && formControls.nomeLivro.touched">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width" color="primary">
+        <mat-label>Gênero do Livro</mat-label>
+        <mat-select formControlName="generoLivro" required>
+          <mat-option *ngFor="let genero of generosLivros" [value]="genero">{{ genero }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formControls.generoLivro.hasError('required') && formControls.generoLivro.touched">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width" color="primary">
+        <mat-label>Descrição</mat-label>
+        <textarea id="no-resize3" matInput autofocus formControlName="text" (input)="updateDescriptionCount($event)"
+                  required></textarea>
+        <div class="text-right text-gray-500">{{ formControls.text.value?.length }}/350</div>
+        <mat-error *ngIf="formControls.text.hasError('required') && formControls.text.touched">
+          Campo obrigatório
+        </mat-error>
+        <mat-error *ngIf="formControls.text.hasError('maxLength') && formControls.text.touched">
+          Limite de 350 caracteres atingido
+        </mat-error>
+      </mat-form-field>
+
+      <input name="avatar" type="file" id="file" accept="image/jpg, image/jpeg, image/png"
+             (change)="onImageChange($event)" required />
+      <mat-error *ngIf="formControls.imageUrl.hasError('required') && formControls.imageUrl.touched">
+        Campo obrigatório
+      </mat-error>
+      <mat-error *ngIf="formControls.imageUrl.hasError('invalidImageType') && formControls.imageUrl.touched">
+        Formato de imagem inválido
+      </mat-error>
+
+      <div *ngIf="profanity" (click)="toggleProfanity()" class="text-red-600">
+        Sem palavrões!
+      </div>
+
+      <div class="button-container">
+        <button mat-raised-button color="warn" (click)="toggleCreatePost()" class="cancel-button">Cancelar</button>
+        <button class="submit-button" mat-raised-button color="primary" (click)="submitPost($event)"
+                [disabled]="!formValid">Publicar</button>
+      </div>
     </form>
 
-    <ng-template #createPostTemplate>
-        <form [formGroup]="postForm" (ngSubmit)="submitPost($event)">
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Make a Post</mat-label>
-                <textarea class="min-h-[120px]" id="no-resize" matInput autofocus formControlName="text"></textarea>
-            </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Adicionar um livro (Imagem)?</mat-label>
-                <input matInput formControlName="imageUrl">
-            </mat-form-field>
-            <div *ngIf="profanity" (click)="toggleProfanity()" class="text-red-600">
-                No profanity!
-            </div>
-            <div align="end">
-                <button mat-raised-button color="warn" (click)="toggleCreatePost()">Cancel</button>
-                <button mat-raised-button color="primary" (click)="submitPost($event)">Post</button>
-            </div>
 
-        </form>
-    </ng-template>
+    <div *ngIf="profanity" (click)="toggleProfanity()" class="text-red-600">
+      No profanity!
+    </div>
+  </ng-template>
+
+  <div class="" *ngFor="let post of posts">
+    <app-livroPublicado [post]="post" (postToRemove)="onPostRemove($event)"></app-livroPublicado>
+  </div>
 </div>

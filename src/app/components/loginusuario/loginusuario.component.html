@@ -1,0 +1,66 @@
+
+  <div class="login-wrapper" fxLayout="" fxLayoutAlign="center center">
+    <div class="background-image">
+    <div>
+      <mat-card  class="box">
+        <mat-card-header>
+          <mat-card-title>
+            <div  class="flex justify-evenly mb-5">
+              <a
+                class="font-semibold text-blue-600 text-[20px] underline underline-offset-8"
+                [routerLink]="['/login']"
+              > Entrar</a>
+
+              <a
+                [routerLink]="['/register']"
+                class="font-normal text-gray-400 text-[20px]"
+              > Cadastrar </a>
+            </div>
+          </mat-card-title>
+
+        </mat-card-header>
+
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+          <mat-form-field class="full-width">
+            <mat-label class="text-sm"> E-mail </mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="formControls.email.hasError('required')">E-mail obrigatório</mat-error>
+            <mat-error *ngIf="formControls.email.hasError('email')">E-mail inválido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label class="text-sm"> Senha </mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="formControls.password.hasError('required')">Senha obrigatório</mat-error>
+            <mat-error *ngIf="formControls.password.hasError('minlength')">A senha deve ter no mínimo 6 caracteres</mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" class="btn-block tracking-wider" type="submit"> Entrar</button>
+
+          <div  style="margin-top:10px">
+            <a
+              [routerLink]="['/forgot']"
+              class="font-normal text-[15px] my-custom-link"
+              title="Clique aqui para se registrar"
+            >
+              Recuperar Senha
+            </a>
+
+          </div>
+
+        </form>
+
+        <p
+          *ngIf="hasError"
+          class="text-red-500 text-center"
+        >
+          {{ message }}
+        </p>
+
+      </mat-card>
+    </div>
+
+
+</div>
+  </div>
+

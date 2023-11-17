@@ -2,7 +2,7 @@
     <app-navbar></app-navbar>
 </span>
 
-<div class="pt-20 mx-5 lg:mx-7 xl:mx-20"> 
+<div class="pt-20 mx-5 lg:mx-7 xl:mx-20">
     <ul class="grid gap-4 justify-items-center" id="responsive-grid">
         <!-- Header -->
         <li class="px-8 py-5 rounded-md bg-gradient-to-r from-purple-600 to-blue-600 w-full text-white text-6xl font-oleoScript text-center"
@@ -17,15 +17,15 @@
             <div class="h-[360px]">
                 <div class="rounded-lg shadow-lg bg-white max-w-[250px] h-full box-shadow">
                     <a class="flex justify-center align-middle h-3/5" [routerLink]="'/profile'" [queryParams]="{id: profile.id}" >
-                        <img 
-                            class="rounded-t-lg w-full h-full object-cover" 
-                            [src]="profile.owner.avatarImageUrl != 'https://www.nicepng.com/png/full/128-1280406_view-user-icon-png-user-circle-icon-png.png' ? profile.owner.avatarImageUrl : 'assets/images/search-no-image.svg'" 
+                        <img
+                            class="rounded-t-lg w-full h-full object-cover"
+                            [src]="profile.owner.avatarImageUrl != 'https://www.seekpng.com/png/detail/115-1150053_avatar-png-transparent-png-royalty-free-default-user.png' ? profile.owner.avatarImageUrl : 'assets/images/search-no-image.svg'"
                             alt=""
                         />
                     </a>
-            
+
                     <mat-divider></mat-divider>
-            
+
                     <div class="grid p-6">
                         <p class="text-gray-700 text-base mb-4 text-center">
                             {{ profile.owner.firstName + ' ' + profile.owner.lastName }}
@@ -33,7 +33,7 @@
                         <button
                             (click)="onUnsubscribe(profile.id)"
                             *ngIf="isEditable"
-                            type="button" 
+                            type="button"
                             class="text-white text-center px-6 py-2.5 tracking-wider font-medium text-xs uppercase rounded shadow-md hover:shadow-lg transition duration-150 ease-in-out"
                             [ngClass]="{
                                 'bg-blue-600 hover:bg-blue-700' : !isSubscribed,

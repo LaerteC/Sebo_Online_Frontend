@@ -45,7 +45,7 @@ describe('PostDeleteButtonComponent', () => {
     fixture = TestBed.createComponent(PostDeleteButtonComponent);
     component = fixture.componentInstance;
     let user = new User(0,"","","");
-    component.post = new Post(0,"","",0,user,[]);
+    component.post = new Post(0, "", "", 0, user, []);
     fixture.detectChanges();
   });
 

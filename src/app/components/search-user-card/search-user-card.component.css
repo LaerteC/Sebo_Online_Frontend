@@ -1,0 +1,7 @@
+.card-slide {
+  transition: transform 0.3s ease;
+}
+
+.card-slide:hover {
+  transform: translateZ(-20px);
+}

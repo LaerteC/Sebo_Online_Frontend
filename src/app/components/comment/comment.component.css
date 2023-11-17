@@ -1,0 +1,57 @@
+button{
+    margin:8px;
+}
+
+
+/* Defina as cores personalizadas para os botões */
+.custom-cancel-button {
+    background-color: #df7355; /* Vermelho escuro */
+    color: white; /* Texto branco */
+}
+
+.custom-submit-button {
+    background-color: #4CAF50; /* Verde */
+    color: white; /* Texto branco */
+}
+
+/* Estilize o hover dos botões */
+.custom-cancel-button:hover {
+    background-color: #FF8C69; /* Vermelho mais claro no hover */
+}
+
+.custom-submit-button:hover {
+    background-color: #45A049; /* Verde mais escuro no hover */
+}
+
+
+.comment-card {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.comment-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-content {
+  margin-left: 10px;
+
+}
+
+.comment-content h3 {
+  font-size: 15px;
+
+}
+
+.comment-content p {
+  font-size: 16px;
+  margin: 5px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+

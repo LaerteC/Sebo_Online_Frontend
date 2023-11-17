@@ -17,9 +17,9 @@ describe('PostCreateComponent', () => {
   let postServiceSpy: jasmine.SpyObj<PostService>
   postServiceSpy = jasmine.createSpyObj('PostService',['upsertPost'])
   let user = new User(0,"","","") 
-  let post = new Post(1000,"","",0,user,[])
+  let post = new Post(1000, "", "", 0, user, [])
 
-  authServiceStub = {
+    authServiceStub = {
     currentUser: user
   }
 

@@ -4,11 +4,11 @@
 
 <div class="pt-20 mx-5 lg:mx-7 xl:mx-20">
 
-    <app-profile-hero-banner 
-        [isEditable]="isEditable" 
+    <app-profile-banner
+        [isEditable]="isEditable"
         [heroBannerInformation]="profileHeroBanner"
         [updateProfile]="updateProfile"
-    ></app-profile-hero-banner>
+    ></app-profile-banner>
 
     <div class="mt-4 grid grid-cols-[270px_1fr_1fr] lg:grid-cols-[360px_1fr_1fr] xl:grid-cols-4 gap-4">
 
@@ -19,13 +19,41 @@
             >
                 <app-profile-personal-information [profilePersonalInfo]="profilePersonalInfo">
                     <button
-                        *ngIf="isEditable" 
-                        class="w-full mt-2" 
+                        *ngIf="isEditable"
+                        class="w-full mt-2"
                         mat-raised-button color="primary"
                         (click)="openDialog()"
-                    >+ Add Information</button>
+                    >+ Adicionar Dados </button>
                 </app-profile-personal-information>
             </div>
+
+          <div class="mt-4 p-4 bg-white box-shadow">
+            <h4 class="flex items-center justify-between">
+                    <span class="flex items-center">
+                        <mat-icon>book</mat-icon>
+                        <span class="ml-2 text-base font-semibold">
+                            Livros
+                        </span>
+                    </span>
+              <a
+                *ngIf="photoUrls.length != 0"
+                [routerLink]="'/photos'" [queryParams]="{id: profileId}"
+                class="text-blue-600 underline"
+              > Tudo </a>
+            </h4>
+
+            <button
+              *ngIf="isEditable && photoUrls.length == 0"
+              class="w-full mt-2"
+              mat-raised-button color="primary"
+              routerLink="/photos"
+            >+ Adicionar meus Livros</button>
+            <ul class="grid grid-cols-3 grid-rows-1 gap-x-1.5 gap-y-1 px-1">
+              <li
+                *ngFor="let photoUrl of photoUrls"
+              ><img class="relative w-full h-full object-cover" [src]="photoUrl" ></li>
+            </ul>
+          </div>
 
             <!-- List of Friends-->
             <div class="py-4 bg-white box-shadow"
@@ -36,37 +64,7 @@
             >
                 <app-profile-following [followersIds]="followersIds"></app-profile-following>
             </div>
-
-            <div class="mt-4 p-4 bg-white box-shadow">
-                <h4 class="flex items-center justify-between">
-                    <span class="flex items-center">
-                        <mat-icon>photo</mat-icon>
-                        <span class="ml-2 text-base font-semibold">
-                            Photos
-                        </span>
-                    </span>
-                    <a 
-                        *ngIf="photoUrls.length != 0"
-                        [routerLink]="'/photos'" [queryParams]="{id: profileId}"
-                        class="text-blue-600 underline"
-                    >All</a>
-                </h4>
-
-                <button
-                        *ngIf="isEditable && photoUrls.length == 0" 
-                        class="w-full mt-2"
-                        mat-raised-button color="primary"
-                        routerLink="/photos"
-                >+ Add Photos</button>
-                <ul class="grid grid-cols-3 grid-rows-1 gap-x-1.5 gap-y-1 px-1">
-                    <li
-                        *ngFor="let photoUrl of photoUrls"
-                    ><img class="relative w-full h-full object-cover" [src]="photoUrl" ></li>
-                </ul>
-            </div>
-
         </aside>
-        
 
         <div class="col-span-2">
             <div class="bg-white px-4 py-2 mb-4 box-shadow"
@@ -74,18 +72,17 @@
             >
               <app-post-create [inputPosts]="inputPosts" (outputPosts)="updatePosts($event)"></app-post-create>
             </div>
-            
+
 
             <div *ngFor="let post of posts">
-                <app-post [post]="post" (postToRemove)="onPostRemove($event)"></app-post>
+                <app-livroPublicado [post]="post" (postToRemove)="onPostRemove($event)"></app-livroPublicado>
             </div>
-           
-        </div>
-        
-    </div>
-    
 
-    <!--  -->
+        </div>
+
+    </div>
+
+
 </div>
 
 
