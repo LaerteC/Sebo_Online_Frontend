@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="max-w-2xl m-auto pb-3">
+
+    <span class="px-4 pt-2 grid gap-x-3 gap-y-1 max-w-2xl">
+        <mat-form-field>
+            <mat-label>Estado civil</mat-label>
+            <mat-select formControlName="maritalStatus">
+                <mat-option value=""></mat-option>
+                <mat-option value="Solteiro"> Solteiro </mat-option>
+                <mat-option value="Casado (a)"> Casado (a)</mat-option>
+                <mat-option value="Viúvo (a)"> Viúvo (a)</mat-option>
+                <mat-option value="Enrolado (a)"> Enrolado (a)</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </span>
+
+    <span
+        class="flex justify-center font-semibold mb-2"
+        *ngIf="hasResponse"
+        [ngClass]="{
+            'text-red-500' : hasError,
+            'text-blue-500': !hasError
+        }"
+    >
+        {{ responseMessage }}
+    </span>
+
+    <div class="flex justify-center">
+        <button
+            mat-raised-button
+            style="background-color: #4b954f; color: white"
+            class="mt-2 btn-block tracking-wider w-1/2 flex m-auto"
+            type="submit"
+        > Salvar alterações </button>
+    </div>
+</form>

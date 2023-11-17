@@ -1,0 +1,39 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="max-w-2xl m-auto pb-3">
+    <h3 class="pt-3 mb-1"> Instituições de ensino </h3>
+
+    <p class="col-span-2">
+        Locais
+    </p>
+
+    <span class="px-4 pt-2 grid gap-x-3 gap-y-1 max-w-2xl">
+        <mat-form-field>
+            <mat-label> Universidade / Colégio</mat-label>
+            <input matInput type="text" name="schoolName" formControlName="schoolName" >
+            <mat-error></mat-error>
+        </mat-form-field>
+    </span>
+
+    <span
+        class="flex justify-center font-semibold mb-2"
+        *ngIf="hasResponse"
+        [ngClass]="{
+            'text-red-500' : hasError,
+            'text-blue-500': !hasError
+        }"
+    >
+        {{ responseMessage }}
+    </span>
+
+    <div class="flex justify-center">
+        <button
+            mat-raised-button
+            style="background-color: #4b954f; color: white"
+            class="mt-2 btn-block tracking-wider w-1/2 flex m-auto"
+            type="submit"
+        > Salva Edição </button>
+    </div>
+
+    <div *ngIf="loader" style="text-align: center;">
+        <strong>Carregando...</strong>
+    </div>
+</form>

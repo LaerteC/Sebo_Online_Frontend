@@ -1,29 +1,29 @@
 <div class="h-[360px]">
-    <div class="rounded-lg shadow-lg bg-white max-w-[250px] h-full box-shadow">
-        <a class="flex justify-center align-middle h-3/5" [routerLink]="'/profile'" [queryParams]="{id: profile.id}" >
-            <img 
-                class="rounded-t-lg w-full h-full object-cover" 
-                [src]="profile.owner.avatarImageUrl != 'https://www.nicepng.com/png/full/128-1280406_view-user-icon-png-user-circle-icon-png.png' ? profile.owner.avatarImageUrl : 'assets/images/search-no-image.svg'" 
-                alt=""
-            />
-        </a>
+  <div class="rounded-lg shadow-lg bg-white max-w-[250px] h-full box-shadow card-slide">
+    <a class="flex justify-center items-center h-3/5" [routerLink]="'/profile'" [queryParams]="{id: profile.id}" >
+      <img
+        class="rounded-t-lg w-full h-full object-cover"
+        [src]="profile.owner.avatarImageUrl != 'https://www.nicepng.com/png/full/128-1280406_view-user-icon-png-user-circle-icon-png.png' ? profile.owner.avatarImageUrl : 'assets/images/search-no-image.svg'"
+        alt=""
+      />
+    </a>
 
-        <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-        <div class="grid p-6">
-            <p class="text-gray-700 text-base mb-4 text-center">
-                {{ profile.owner.firstName + ' ' + profile.owner.lastName }}
-            </p>
-            <button
-                *ngIf="!(ownId == profile.id)"
-                (click)="isSubscribed ? onUnsubscribe() :onSubscribe()"
-                type="button" 
-                class="text-white text-center px-6 py-2.5 tracking-wider font-medium text-xs uppercase rounded shadow-md hover:shadow-lg transition duration-150 ease-in-out"
-                [ngClass]="{
-                    'bg-blue-600 hover:bg-blue-700' : !isSubscribed,
+    <div class="grid p-6">
+      <p class="text-gray-700 text-base mb-4 text-center">
+        {{ profile.owner.firstName + ' ' + profile.owner.lastName }}
+      </p>
+      <button
+        *ngIf="!(ownId == profile.id)"
+        (click)="isSubscribed ? onUnsubscribe() : onSubscribe()"
+        type="button"
+        class="text-white text-center px-6 py-2.5 tracking-wider font-medium text-xs uppercase rounded shadow-md hover:shadow-lg transition duration-150 ease-in-out"
+        [ngClass]="{
+                    'bg-green-600 hover:bg-green-300' : !isSubscribed,
                     'bg-red-400 hover:bg-red-500': isSubscribed
                 }"
-            > {{ isSubscribed ?  "Unsubscribe" : "+ Subscribe"}}</button>
-        </div>
+      > {{ isSubscribed ?  "Deixar de Seguir" : "+ Seguir"}}</button>
     </div>
+  </div>
 </div>

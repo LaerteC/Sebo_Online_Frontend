@@ -1,69 +1,85 @@
-<span class="fixed w-screen z-30">
+<span class="w-screen z-7">
     <app-navbar></app-navbar>
 </span>
 
-    <div class="mx-5 lg:mx-7 xl:mx-20">
-        <div class="sidebyside mt-20">
-            <app-user-card></app-user-card>
-        </div>
 
-        <div class="w-2/3 mt-20 sidebyside post-feed-container flex justify-center ">
-            <form class=" form mt-20 bg-white px-4 py-2 box-shadow " *ngIf="!createPost; else createPostTemplate" style="border-style: hidden;">
-                <mat-form-field class="full-width" appearance="outline" color="primary" >
-                    <mat-label> Quero trocar ou  doar livros ?</mat-label>
-                    <input matInput (focus)="toggleCreatePost()">
-                </mat-form-field>
-            </form>
+<div class="w-7/9  post-feed-container flex justify-center "
+     style="padding-top:10px;padding-left:20px;padding-right:20px;margin:0px">
+
+  <div class="w-1/4 left-0 top-90 p-4 gray">
+    <mat-card class="small-gray-card" style="border-radius: 10px;">
+      <mat-card-content>
+        <h3> Categorias Populares : </h3>
+        <mat-chip-listbox aria-label="Livros selection">
+
+          <mat-chip (click)="onChipSelectionChange('Fantasia')" alt="Livros tags">
+            <img matChipAvatar
+                 src="https://images.unsplash.com/photo-1529073395563-ae06eb6d8b27?auto=format&fit=crop&q=80&w=1978&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+            Fantasia
+          </mat-chip>
+          <mat-chip color="primary" (click)="onChipSelectionChange('Romance')" alt="Livros tags">
+            <img matChipAvatar
+                 src="https://images.unsplash.com/photo-1529073395563-ae06eb6d8b27?auto=format&fit=crop&q=80&w=1978&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+            Romance
+          </mat-chip>
+          <mat-chip color="accent" (click)="onChipSelectionChange('Ficção Científica')" alt="Livros tags">
+            <img matChipAvatar
+                 src="https://images.unsplash.com/photo-1529073395563-ae06eb6d8b27?auto=format&fit=crop&q=80&w=1978&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+            Ficção Científica
+          </mat-chip>
+          <mat-chip color="accent" (click)="onChipSelectionChange('Mistério')" alt="Livros tags">
+            <img matChipAvatar
+                 src="https://images.unsplash.com/photo-1698404328195-fc020ba2ba7c?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+            Mistério
+          </mat-chip>
+          <mat-chip color="accent" (click)="onChipSelectionChange('Suspense')" alt="Livros tags">
+            <img matChipAvatar
+                 src="https://images.unsplash.com/photo-1698404328195-fc020ba2ba7c?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg"/>
+            Suspense
+          </mat-chip>
+
+          <mat-chip color="accent" (click)="onChipSelectionChange('História')">
+            <img matChipAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Livros tags"/>
+            História
+          </mat-chip>
+
+          <mat-chip color="accent" (click)="onChipSelectionChange('Não Ficção')">
+            <img matChipAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Livros tags"/>
+            Não-Ficção
+          </mat-chip>
+
+          <mat-chip color="accent" (click)="onChipSelectionChange('Aventura')">
+            <img matChipAvatar
+                 src="https://images.unsplash.com/photo-1694953981377-e3ed32b6de96?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 alt="Photo of a Shiba Inu"/>
+            Aventura
+          </mat-chip>
+
+        </mat-chip-listbox>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
 
-            <ng-template #createPostTemplate >
-                <form class="form mt-20 bg-white px-4 py-2 " [formGroup]="postForm" (ngSubmit)="submitPost($event)" >
-                    <mat-form-field appearance="outline" class="full-width" color="primary">
-                        <mat-label> Postar um livro </mat-label>
-                        <textarea class="min-h-[120px]" id="no-resize" matInput autofocus formControlName="text" ></textarea>
-                    </mat-form-field>
+  <div class="sidebyside  order-2 order-md-1">
+    <app-user-card></app-user-card>
+  </div>
+  <div>
 
-                    <div *ngIf="this.profanity" (click)="toggleProfanity()" class="text-red-600">
-                        No profanity!
-                    </div>
+      <div class="form bg-white px-4 py-2 ">
+        <app-post-create></app-post-create>
+      </div>
 
-                    <div class="flex justify-end w-full">
-                        <button mat-raised-button color="warn" (click)="toggleCreatePost()">Cancel</button>
-                        <button class="mx-5" mat-raised-button color="primary" (click)="submitPost($event)">Post</button>
-                    </div>
-
-                </form>
-
-                <div
-                        class="absolute top-6 left-16"
-                        *ngIf="isEditable"
-                ></div>
-
-                <img class="relative bg-white w-[120px] h-[120px] border-[5px] rounded-full border-white ml-5 mr-3 mt-3 object-cover"
-                     id="livro"
-                     [src]="heroBannerInformation.avatarImageUrl" alt="user's photo"
-                     (mouseenter)="isAvatarUploadShown = true"
-                />
-
-                <form>
-                    <label for="file"
-                           class="text-white/40 text-shadow hover:text-white/90 transition-colors cursor-pointer">
-                        <mat-icon class="scale-125">photo_camera</mat-icon>
-                    </label>
-                    <input
-                            name="livro"
-                            type="file"
-                            id="file"
-                            accept="image/jpg, image/jpeg, image/png"
-                            (change)="onImageChange($event, 'background')"
-                    />
-                </form>
-                    </ng-template>
-
-            <div class="" *ngFor="let post of posts">
-                <app-post [post]="post" (postToRemove)="onPostRemove($event)"></app-post>
-            </div>
-        </div>
+    <div class="livro" *ngFor="let post of posts">
+      <app-livroPublicado [post]="post" (postToRemove)="onPostRemove($event)"></app-livroPublicado>
     </div>
+
+    <button (click)="scrollToTop()" class="scroll-top-btn">Topo</button>
+
+
+  </div>
+
+</div>
+
 
 

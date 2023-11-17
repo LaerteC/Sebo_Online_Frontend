@@ -1,0 +1,47 @@
+
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.half-width {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.mat-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.mat-error {
+  color: #ff0000;
+}
+
+.text-red-600 {
+  color: #ff5555;
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.cancel-button {
+  background-color: #999;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  color: #777;
+}

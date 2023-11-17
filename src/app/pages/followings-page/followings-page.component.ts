@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { IProfile, Profile } from 'src/app/models/Profile';
 import { ProfileService } from 'src/app/services/profile.service';
-import { SubscriptionService } from 'src/app/services/subscription.service';
+import { AmigosinscricaoService } from 'src/app/services/amigosinscricao.service';
 
 @Component({
   selector: 'app-followings-page',
@@ -15,19 +15,19 @@ export class FollowingsPageComponent implements OnInit {
   isEditable = false;
 
   isSubscribed = true;
-  
+
   profiles: Profile[];
 
-  constructor(private route: ActivatedRoute, private profileService: ProfileService, private subscriptionService: SubscriptionService) { }
+  constructor(private route: ActivatedRoute, private profileService: ProfileService, private subscriptionService: AmigosinscricaoService) { }
 
   ngOnInit(): void {
     this.route
         .queryParams
         .subscribe( (response) => {
-          
+
           if (response['id'] !== undefined)
             this.queryIdProvided(response['id']);
-          else 
+          else
             this.queryIdNotProvided();
         })
   }

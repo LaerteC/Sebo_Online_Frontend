@@ -1,0 +1,85 @@
+<div class="post-card" >
+    <mat-card  appearance="outlined">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <img class="relative bg-white rounded-full border-white object-cover w-full h-full"
+                    id="avatar"
+                    [src]="post.author.avatarImageUrl" alt="usuario foto"
+                />
+            </div>
+            <mat-card-title>
+                <a [routerLink]="'/profile'" [queryParams]="{id: post.author.id}">
+                    {{post.author.firstName}}
+                    {{post.author.lastName}}
+                </a>
+            </mat-card-title>
+            <mat-card-subtitle>{{post.author.email}}</mat-card-subtitle>
+        </mat-card-header>
+
+      <mat-card-content class="mb-3 overflow-fix" >
+        <div class="book-info">
+          <h2 class="book-title">{{ post.nomeLivro }}</h2>
+          <p class="book-genre">{{ post.generoLivro }}</p>
+        </div>
+        <p class="book-description">{{ post.text }}</p>
+      </mat-card-content>
+
+
+      <div class="card">
+        <img  *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
+      </div>
+
+
+<!--        <div *ngFor="let comment of post.comentario" class="comment-container">-->
+<!--            <mat-divider></mat-divider>-->
+<!--            <app-comment [comment]="comment"></app-comment>-->
+<!--        </div>-->
+
+
+
+
+      <mat-card-actions align="end">
+        <app-post-delete-button [post]="post" *ngIf="post.author.id === currentUser.id" (postToRemove)="postToRemove.next($event)"></app-post-delete-button>
+        <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Comentar</button>
+
+        <button mat-raised-button color="primary" *ngIf="!(post.author.id === currentUser.id)" (click)="changeBook(post.id,currentUser.id)" >Quero o Livro</button>
+        <button mat-raised-button color="warn" *ngIf="post.author.id === currentUser.id" (click)="togglePostVisibility(post.id)">
+          {{ postVisible ? 'Mostrar Post' : 'Ocultar Post'}}
+
+        </button>
+      </mat-card-actions>
+
+
+      <button (click)="showComments = !showComments">
+        {{ showComments ? 'Esconder Comentários' : 'Mostrar Comentários' }}
+      </button>
+      <div *ngIf="showComments">
+        <div *ngFor="let comment of post.comentario" class="comment-container">
+          <mat-divider></mat-divider>
+          <app-comment [comment]="comment"></app-comment>
+        </div>
+      </div>
+
+
+
+        <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Comentar </mat-label>
+                <textarea matInput autofocus formControlName="text"></textarea>
+            </mat-form-field>
+            <div align="end">
+
+                <div align="end">
+                    <button mat-raised-button class="custom-cancel-button" (click)="toggleReplyToPost()">Cancelar</button>
+                    <button mat-raised-button class="custom-submit-button" type="submit">Enviar</button>
+                </div>
+
+            </div>
+        </form>
+
+        <span>
+            <app-vote-button [post]="post" *ngIf="!(post.author.id === currentUser.id)"></app-vote-button>
+        </span>
+
+    </mat-card>
+</div>

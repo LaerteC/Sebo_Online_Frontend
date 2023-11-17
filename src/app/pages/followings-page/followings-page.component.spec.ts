@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { IProfile, Profile } from 'src/app/models/Profile';
 import { ProfileService } from 'src/app/services/profile.service';
-import { SubscriptionService } from 'src/app/services/subscription.service';
+import { AmigosinscricaoService } from 'src/app/services/amigosinscricao.service';
 
 import { FollowingsPageComponent } from './followings-page.component';
 
@@ -19,7 +19,7 @@ describe('FollowingsPageComponent', () => {
   let component: FollowingsPageComponent;
   let fixture: ComponentFixture<FollowingsPageComponent>;
   let profileServiceStub: Partial<ProfileService>;
-  let subscriptionServiceStub: Partial<SubscriptionService>;
+  let subscriptionServiceStub: Partial<AmigosinscricaoService>;
   let profile = new Profile();
   //profile.owner.avatarImageUrl = ''
   let profiles:IProfile[] = [];
@@ -47,7 +47,7 @@ describe('FollowingsPageComponent', () => {
       imports: [ RouterTestingModule, MatDividerModule ],
       declarations: [ FollowingsPageComponent, MockNavbar ],
       providers: [ { provide: ProfileService, useValue: profileServiceStub },
-        { provide: SubscriptionService, useValue: subscriptionServiceStub } ]
+        { provide: AmigosinscricaoService, useValue: subscriptionServiceStub } ]
     })
     .compileComponents();
 

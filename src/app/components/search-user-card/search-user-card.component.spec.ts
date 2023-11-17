@@ -6,22 +6,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import User from 'src/app/models/User';
-import { SubscriptionService } from 'src/app/services/subscription.service';
+import { AmigosinscricaoService } from 'src/app/services/amigosinscricao.service';
 
 import { SearchUserCardComponent } from './search-user-card.component';
 
 describe('SearchUserCardComponent', () => {
   let component: SearchUserCardComponent;
   let fixture: ComponentFixture<SearchUserCardComponent>;
-  let subscriptionServiceSpy: jasmine.SpyObj<SubscriptionService>
+  let subscriptionServiceSpy: jasmine.SpyObj<AmigosinscricaoService>
   subscriptionServiceSpy = jasmine.createSpyObj('SubscriptionSevice', ['subscribeProfile', 'unsubscribeProfile']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ MatIconModule, MatExpansionModule, 
-        MatDividerModule, MatFormFieldModule, RouterTestingModule ], 
+      imports: [ MatIconModule, MatExpansionModule,
+        MatDividerModule, MatFormFieldModule, RouterTestingModule ],
       declarations: [ SearchUserCardComponent ],
-      providers: [ { provide: SubscriptionService, useValue: subscriptionServiceSpy }]
+      providers: [ { provide: AmigosinscricaoService, useValue: subscriptionServiceSpy }]
     })
     .compileComponents();
 

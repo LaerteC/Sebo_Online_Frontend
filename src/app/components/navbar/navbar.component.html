@@ -1,55 +1,54 @@
 <p>
     <mat-toolbar class="box-shadow">
         <div class="w-full flex justify-between items-center">
-            <span 
+            <span
                 class="grid grid-flow-col auto-cols-max items-center cursor-pointer"
                 [routerLink]="['/post-feed']"
             >
-                <img class="w-10" src="../../../assets/images/favicon.png" alt="Logo">
-                <span class="text-shadow text-green-800"> Sebo Online</span>
+                <img class="w-11" src="../../../assets/images/logoseboonline.jpg"  alt="Logo">
+                <span style="padding:10px; font-size: 24px" class="text-shadow text-green-800"> Sebo Online</span>
             </span>
             <div class="flex items-center">
-                <a 
+                <a
                     routerLink="/post-feed"
                     [ngClass]="{
                         'active-icon relative' : router.url === '/post-feed'
-                    }" 
+                    }"
                     class="flex items-center"
                 >
-                    <mat-icon [color]="router.url === '/post-feed' ? 'primary' : ''">feedback</mat-icon>
+                  <span class="material-icons">
+                    auto_stories
+                  </span>
                 </a>
 
 
-                <a 
-                    routerLink="/profile"
-                    [ngClass]="{
+              <a
+                routerLink="/profile"
+                [ngClass]="{
                         'active-icon relative' : router.url === '/profile'
-                    }" 
-                    class="flex items-center ml-12"
-                >
-                    <mat-icon [color]="router.url === '/profile' ? 'primary' : ''">account_circle</mat-icon>
-                </a>
-                <a 
-                    routerLink="/chat"
-                    [ngClass]="{
-                        'active-icon relative' : router.url === '/chat'
-                    }" 
-                    class="flex items-center ml-12"
-                >
-                    <mat-icon [color]="router.url === '/chat' ? 'primary' : ''">chat_bubble_outline</mat-icon>
-                </a>
+                    }"
+                class="flex items-center ml-12"
+              >
+               <span class="material-icons">
+                people
+              </span>
+              </a>
 
-                <a 
-                    routerLink="/search"
-                    [ngClass]="{
+
+              <a
+                routerLink="/search"
+                [ngClass]="{
                         'active-icon relative' : router.url === '/search'
-                    }" 
-                    class="flex items-center ml-12"
-                >
-                    <mat-icon [color]="router.url === '/search' ? 'primary' : ''">search</mat-icon>
-                </a>
+                    }"
+                class="flex items-center ml-12"
+              >
+                <span class="material-icons">
+                  person_search
+                </span>
+              </a>
+
             </div>
-            <button mat-button (click)="logout();">Logout</button>
+          <button mat-raised-button (click)="logout();" style="margin:10px"> Sair</button>
         </div>
     </mat-toolbar>
 </p>

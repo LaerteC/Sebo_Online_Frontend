@@ -5,8 +5,14 @@
     font-size: 1em;    
 }
 
+
+.btn{
+
+    margin:10px
+}
+
 .votesection{
-    margin:0px;
+    margin:10px;
     background-color: #ffffff;
 }
 .upvote,.downvote {
@@ -17,7 +23,7 @@
     color: green;
 }
 .downvote:hover {
-    color: red;
+    color: #f1e4e4;
 }
 
 .votecount{
@@ -26,4 +32,11 @@
 
 .vote_text{
     vertical-align: center;
+}
+
+
+/* Defina a cor vermelha fosca para a classe .neutral-face */
+.neutral-face {
+    color: #FF0000; /* Código de cor vermelha */
+    opacity: 0.7; /* Opacidade para criar um efeito fosco */
 }

@@ -16,7 +16,7 @@ export class PostDeleteButtonComponent implements OnInit {
   @Output() postToRemove: EventEmitter<Post> = new EventEmitter();
 
   user: User = this.authService.currentUser
-  
+
   constructor(
     private postService: PostService,
     private authService: AuthService
@@ -42,6 +42,6 @@ export class PostDeleteButtonComponent implements OnInit {
     });
   }
 
-  
+
 
 }

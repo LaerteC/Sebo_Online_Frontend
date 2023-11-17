@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProfile, IUser, Profile } from 'src/app/models/Profile';
-import { SubscriptionService } from 'src/app/services/subscription.service';
+import { AmigosinscricaoService } from 'src/app/services/amigosinscricao.service';
 
 @Component({
   selector: 'app-search-user-card',
@@ -20,7 +20,7 @@ export class SearchUserCardComponent implements OnInit {
   @Input()
   ownId: number;
 
-  constructor(private subscriptionService: SubscriptionService) { }
+  constructor(private subscriptionService: AmigosinscricaoService) { }
 
   ngOnInit(): void {
     this.isSubscribed = this.subscribedIds.includes(this.profile.id)
