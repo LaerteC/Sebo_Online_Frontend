@@ -17,6 +17,7 @@
 - [Angular 16](https://angular.io/guide/update-to-version-16)
 - [Node 18.16.0](https://nodejs.org/en)
 - [Material](https://material.angular.io/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 
 
