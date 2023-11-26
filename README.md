@@ -38,7 +38,7 @@
 ![img.png](img.png)
 
 <p align="center">
- <img src="https://img.shields.io/static/v1?label=FRONTEND&message=ANGULAR&color=8257E5&labelColor=000000" alt="@laerte" />
+ <img src="https://img.shields.io/static/v1?label=FRONTEND&message=ANGULAR&color=8257E5&labelColor=000000" alt="@" />
 </p>
 
 # Instruções : 
