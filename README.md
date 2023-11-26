@@ -45,7 +45,7 @@
 
 
 ## Fazer o Clone do projeto na sua Máquina
-git clone url
+git clone https://github.com/LaerteC/Sebo_Online_Frontend.git
 
 
 ## Rodar o comando para o Angular carregar os pacotes :
