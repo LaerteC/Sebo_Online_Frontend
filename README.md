@@ -1,12 +1,15 @@
 <h1 align="center">
-  Projeto TCC / SeboOnline Solidário
+  Projeto TCC / SeboOnline
 </h1>
 
 <p align="center">
- <img src="https://img.shields.io/static/v1?label=UFPR&message=TCC&color=8257E5&labelColor=000000" alt="@laerte" />
- <img src="https://img.shields.io/static/v1?label=SeboOnline&message=Solidario&color=8257E5&labelColor=000000" alt="Desafio/Teste" />
+ <img src="https://img.shields.io/static/v1?label=SeboOnline&message=SistemaWeb&color=8257E5&labelColor=000000" alt="@EMANUELFELIPELAERTE" />
+ <img src="https://img.shields.io/static/v1?label=UFPR&message=TCC&color=8257E5&labelColor=000000" alt="Desafio/Teste" />
 </p>
 
+<p align="center">
+ <img src="https://img.shields.io/static/v1?label=FRONTEND&message=ANGULARv16&color=8257E5&labelColor=000000" alt="@EMANUELFELIPELAERTE" />
+</p>
 
 ## Tecnologias
 
